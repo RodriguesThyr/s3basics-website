@@ -269,8 +269,6 @@
   .footer__lang .off { color: rgba(248,246,241,.35); }
   .footer__copy { text-align: center; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); font-size: .85rem; color: rgba(248,246,241,.55); }
 
-  /* ---------- Back to courses (utility nav requested on course pages — present as subtle top crumb) ---------- */
-
   /* ---------- HERO: CENTERED STATEMENT VARIANT (tweak) ---------- */
   body.hero-centered .hero__grid {
     grid-template-columns: 1fr; text-align: center; justify-items: center;
@@ -334,18 +332,17 @@
 <header class="hero" data-screen-label="Hero">
   <div class="wrap hero__grid">
     <div class="reveal">
-      <span class="eyebrow">Safety · Security · Service</span>
+      <span class="eyebrow">For stewards, security guards and event hosts</span>
       <h1>The world's largest Safety, Security and Service micro-learning platform.</h1>
-      <p class="hero__sub">Built from the field. Delivered on WhatsApp. Taught by someone who's been on the same pitch you'll be on.</p>
-      <p class="hero__cred">5 continents · 40+ stadiums · 1 million+ fans · FIFA World Cup · UEFA EURO · Olympic Games</p>
-      <div class="hero__cta"><a href="#courses" class="btn btn--primary">Browse Courses</a></div>
+      <p class="hero__sub">Built from the field. Delivered on WhatsApp. Powered by 11+ years on the world's biggest stages.</p>
+      <p class="hero__cred">1 million+ fans managed · 5 continents · 40+ stadiums · FIFA World Cup · UEFA EURO · Olympic Games</p>
+      <div class="hero__cta" style="display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="#free-access" class="btn btn--primary">Try for Free</a>
+        <a href="#courses" class="btn btn--outline-light">View Courses</a>
+      </div>
     </div>
     <div class="reveal hero__photo">
-      <div class="photo-ph">
-        <span class="photo-ph__corner"></span>
-        <span class="photo-ph__corner br"></span>
-        <span class="photo-ph__label">[ Instructor photo — on-shift,<br>operational context ]</span>
-      </div>
+      <img src="Images/photo-thyr-euro-2025.jpeg" alt="Thyr Rodrigues briefing event volunteers at UEFA Women's EURO 2025" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
     </div>
   </div>
 </header>
@@ -640,59 +637,6 @@
     <div class="footer__copy">© 2026 S3Basics · Courses by Thyr Rodrigues</div>
   </div>
 </footer>
-
-<div id="tweaks-root"></div>
-
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
-<script type="text/babel">
-  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-    "accent": "#E8622A",
-    "heroLayout": "split",
-    "headlineScale": 1
-  }/*EDITMODE-END*/;
-
-  // darken a hex by a factor for the button :hover / --orange-dark token
-  function darken(hex, f) {
-    const n = parseInt(hex.slice(1), 16);
-    let r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
-    r = Math.round(r * (1 - f)); g = Math.round(g * (1 - f)); b = Math.round(b * (1 - f));
-    return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('');
-  }
-
-  function TweaksApp() {
-    const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
-
-    React.useEffect(() => {
-      const root = document.documentElement;
-      root.style.setProperty('--orange', t.accent);
-      root.style.setProperty('--orange-dark', darken(t.accent, 0.16));
-      root.style.setProperty('--hscale', t.headlineScale);
-      document.body.classList.toggle('hero-centered', t.heroLayout === 'centered');
-    }, [t.accent, t.headlineScale, t.heroLayout]);
-
-    return (
-      <TweaksPanel>
-        <TweakSection label="Accent" />
-        <TweakColor label="CTA & accent" value={t.accent}
-          options={['#E8622A', '#B5431C', '#C8861A', '#A93226']}
-          onChange={(v) => setTweak('accent', v)} />
-        <TweakSection label="Hero" />
-        <TweakRadio label="Composition" value={t.heroLayout}
-          options={['split', 'centered']}
-          onChange={(v) => setTweak('heroLayout', v)} />
-        <TweakSection label="Typography" />
-        <TweakSlider label="Headline scale" value={t.headlineScale}
-          min={0.82} max={1.28} step={0.02} unit="×"
-          onChange={(v) => setTweak('headlineScale', v)} />
-      </TweaksPanel>
-    );
-  }
-
-  ReactDOM.createRoot(document.getElementById('tweaks-root')).render(<TweaksApp />);
-</script>
 
 <script>
   // Hamburger
