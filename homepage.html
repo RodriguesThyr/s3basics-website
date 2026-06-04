@@ -56,6 +56,8 @@
   .btn--outline-navy:hover { background: var(--navy); color: #fff; }
   .btn--outline-light { background: transparent; color: #fff; border-color: rgba(255,255,255,.45); }
   .btn--outline-light:hover { background: #fff; color: var(--navy); border-color: #fff; }
+  .btn--whatsapp { background: #25D366; color: #fff; border-color: #25D366; }
+  .btn--whatsapp:hover { background: #1ebe5d; border-color: #1ebe5d; }
   .btn--full { width: 100%; }
 
   .eyebrow {
@@ -269,6 +271,29 @@
   .footer__lang .off { color: rgba(248,246,241,.35); }
   .footer__copy { text-align: center; margin-top: 28px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,.08); font-size: .85rem; color: rgba(248,246,241,.55); }
 
+  /* ---------- COURSE FILTERS ---------- */
+  .course-filter {
+    font-family: var(--body); font-weight: 600; font-size: .9rem;
+    padding: 10px 24px; border-radius: 100px; cursor: pointer;
+    border: 2px solid var(--navy); background: transparent; color: var(--navy);
+    transition: background .18s ease, color .18s ease;
+  }
+  .course-filter:hover { background: var(--navy); color: #fff; }
+  .course-filter.active { background: var(--navy); color: #fff; }
+  .courses-carousel::-webkit-scrollbar { display: none; }
+  .carousel-btn {
+    position:absolute; top:50%; transform:translateY(-50%); z-index:10;
+    width:44px; height:44px; border-radius:50%; border:2px solid var(--navy);
+    background:#fff; color:var(--navy); font-size:1.1rem; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .18s, color .18s; box-shadow:0 2px 8px rgba(15,31,56,.12);
+  }
+  .carousel-btn:hover { background:var(--navy); color:#fff; }
+  .carousel-btn--prev { left:-22px; }
+  .carousel-btn--next { right:-22px; }
+  @media (max-width:767px) { .carousel-btn { display:none; } }
+  .carousel-card.hidden { display: none; }
+
   /* ---------- HERO: CENTERED STATEMENT VARIANT (tweak) ---------- */
   body.hero-centered .hero__grid {
     grid-template-columns: 1fr; text-align: center; justify-items: center;
@@ -303,6 +328,17 @@
     .steps { grid-template-columns: 1fr; gap: 32px; }
     .courses-grid { grid-template-columns: 1fr; }
     .free-steps { grid-template-columns: 1fr; gap: 18px; }
+
+    /* Hero CTA buttons full width on mobile */
+    .hero__cta { flex-direction: column; }
+    .hero__cta .btn { width: 100%; justify-content: center; }
+
+    /* "Who's this for" cards — reduce height on mobile */
+    .pillars .reveal[style*="height:520px"] { height: 420px !important; }
+
+    /* Footer CTA buttons full width on mobile */
+    .footer-cta > div { flex-direction: column; align-items: stretch; }
+    .footer-cta > div .btn { width: 100%; justify-content: center; }
   }
 </style>
 </head>
@@ -316,12 +352,16 @@
     <div class="nav__right" id="navRight">
       <div class="nav__links">
         <a href="#courses">Courses</a>
-        <a href="#instructor">About</a>
+        <a href="#instructor">Instructor</a>
       </div>
       <div class="lang">
         <span class="lang__active">EN</span>
         <span class="lang__soon">FR · ES · PT</span>
       </div>
+      <a href="https://wa.me/PLACEHOLDER?text=FREE%20TRIAL" class="btn btn--whatsapp" style="padding:10px 20px;font-size:.88rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Try for Free
+      </a>
     </div>
   </div>
 </nav>
@@ -337,7 +377,10 @@
       <p class="hero__sub">Built from the field. Delivered on WhatsApp. Powered by 11+ years on the world's biggest stages.</p>
       <p class="hero__cred">1 million+ fans managed · 5 continents · 40+ stadiums · FIFA World Cup · UEFA EURO · Olympic Games</p>
       <div class="hero__cta" style="display:flex;gap:16px;flex-wrap:wrap;">
-        <a href="#free-access" class="btn btn--primary">Try for Free</a>
+        <a href="https://wa.me/PLACEHOLDER?text=FREE%20TRIAL" class="btn btn--whatsapp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Try for Free
+        </a>
         <a href="#courses" class="btn btn--outline-light">View Courses</a>
       </div>
     </div>
@@ -409,7 +452,7 @@
     <div class="sec-head center reveal">
       <span class="eyebrow">For stewards, security guards and event hosts</span>
       <h2>Safety. Security. Service.</h2>
-      <p>Three pillars. One platform. Master the basics, and you're already ahead of most.</p>
+      <p>Three pillars. One platform. Master the basics, and you're already ahead.</p>
     </div>
     <div class="pillars">
       <div class="pillar reveal">
@@ -450,28 +493,101 @@
   </div>
 </section>
 
+<!-- ============ WHO'S THIS FOR ============ -->
+<section class="sec-navy pad" data-screen-label="Who's this for">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <h2>This is for you if...</h2>
+      <p>You want to stand out by developing your skills, based on real experience.<br>You're tired of expensive, slow, classroom courses.</p>
+    </div>
+    <div class="pillars" style="margin-top:clamp(44px,6vw,64px);">
+
+      <div class="reveal" style="position:relative;border-radius:var(--radius);overflow:hidden;height:520px;">
+        <img src="Images/photo-wimbledon-steward.jpg" alt="Steward managing fans at Wimbledon" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,.92) 40%,rgba(10,22,40,.45) 100%);z-index:1;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;padding:32px 28px;">
+          <p style="font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--orange);margin-bottom:12px;">"I want to learn at my own pace, when it suits me."</p>
+          <p style="color:rgba(248,246,241,.85);font-size:1rem;line-height:1.6;">No classroom. No fixed schedule. No commute. Whether you're a steward, security guard or event host — your course is on your phone, ready when you are.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="position:relative;border-radius:var(--radius);overflow:hidden;height:520px;">
+        <img src="Images/photo-stadium-gate.jpg" alt="Security officer observing crowd at stadium gate" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,.92) 40%,rgba(10,22,40,.45) 100%);z-index:1;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;padding:32px 28px;">
+          <p style="font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--orange);margin-bottom:12px;">"I want real knowledge, from someone who's actually done it."</p>
+          <p style="color:rgba(248,246,241,.85);font-size:1rem;line-height:1.6;">Not theory. Not a textbook. S3Basics is built from 11+ years on the world's biggest events — the kind of experience you can only get from being there. At a price that respects what you earn.</p>
+        </div>
+      </div>
+
+      <div class="reveal" style="position:relative;border-radius:var(--radius);overflow:hidden;height:520px;">
+        <img src="Images/photo-steward-fan.jpg" alt="Steward helping a fan at stadium gates" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;">
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,22,40,.92) 40%,rgba(10,22,40,.45) 100%);z-index:1;"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;z-index:2;padding:32px 28px;">
+          <p style="font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--orange);margin-bottom:12px;">"I want training that's relevant to what I actually do."</p>
+          <p style="color:rgba(248,246,241,.85);font-size:1rem;line-height:1.6;">Every lesson is grounded in real scenarios — the situations stewards, security guards and event hosts face every shift. No filler. Just the basics that make a real difference.</p>
+        </div>
+      </div>
+
+    </div>
+    <p class="creds reveal" style="margin-top:clamp(44px,6vw,64px);">Real experience. Fair price. Your phone. No excuses left.</p>
+  </div>
+</section>
+
 <!-- ============ COURSE CARDS ============ -->
 <section class="sec-off pad" id="courses" data-screen-label="Available courses">
   <div class="wrap">
     <div class="sec-head reveal">
       <h2>Available now</h2>
     </div>
-    <div class="courses-grid">
-      <div class="ccard reveal">
+
+    <!-- Pillar filter tabs -->
+    <div class="course-filters reveal" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(28px,4vw,40px);">
+      <button class="course-filter active" data-filter="all">All</button>
+      <button class="course-filter" data-filter="safety">Safety</button>
+      <button class="course-filter" data-filter="security">Security</button>
+      <button class="course-filter" data-filter="service">Service</button>
+    </div>
+
+    <!-- Carousel -->
+    <div style="position:relative;">
+      <button class="carousel-btn carousel-btn--prev" id="carouselPrev" aria-label="Previous courses">&#8592;</button>
+      <button class="carousel-btn carousel-btn--next" id="carouselNext" aria-label="Next courses">&#8594;</button>
+    <div class="courses-carousel reveal" id="coursesCarousel" style="overflow-x:auto;display:flex;gap:clamp(16px,2.5vw,28px);margin-top:clamp(28px,4vw,40px);padding-bottom:16px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+
+      <div class="ccard carousel-card" data-pillars="safety service" style="flex:0 0 320px;width:320px;scroll-snap-align:start;">
         <span class="ccard__tag">Safety · Service</span>
         <h3>Fan Service Essentials</h3>
-        <p class="ccard__outcome">Read crowds, manage situations, and serve fans with confidence — delivered in 10 minutes a day on WhatsApp.</p>
-        <div class="ccard__priceframe">About one hour of your wages</div>
+        <p class="ccard__outcome">Read crowds, manage situations, and serve fans with confidence — delivered on WhatsApp at your own pace.</p>
         <div class="ccard__price">CHF 8.99</div>
         <a href="#get-fan-service" class="btn btn--primary btn--full">Get This Course</a>
       </div>
-      <div class="ccard reveal">
+
+      <div class="ccard carousel-card" data-pillars="safety security" style="flex:0 0 320px;width:320px;scroll-snap-align:start;">
         <span class="ccard__tag">Safety · Security</span>
         <h3>Steward Essentials</h3>
         <p class="ccard__outcome">Master the core skills every stadium steward needs — from access control to emergency response.</p>
         <div class="ccard__status">Coming soon — join the waitlist</div>
         <a href="#notify-steward" class="btn btn--outline-navy btn--full">Notify Me</a>
       </div>
+
+      <div class="ccard carousel-card" data-pillars="security" style="flex:0 0 320px;width:320px;scroll-snap-align:start;">
+        <span class="ccard__tag">Security</span>
+        <h3>Security Essentials</h3>
+        <p class="ccard__outcome">Threat awareness, access control and incident management — the fundamentals every security officer needs.</p>
+        <div class="ccard__status">Coming soon — join the waitlist</div>
+        <a href="#notify-security" class="btn btn--outline-navy btn--full">Notify Me</a>
+      </div>
+
+      <div class="ccard carousel-card" data-pillars="service" style="flex:0 0 320px;width:320px;scroll-snap-align:start;">
+        <span class="ccard__tag">Service</span>
+        <h3>Fan Experience Essentials</h3>
+        <p class="ccard__outcome">Communication, de-escalation and customer care — the skills that turn difficult moments into great ones.</p>
+        <div class="ccard__status">Coming soon — join the waitlist</div>
+        <a href="#notify-fanexp" class="btn btn--outline-navy btn--full">Notify Me</a>
+      </div>
+
+    </div>
     </div>
   </div>
 </section>
@@ -480,19 +596,22 @@
 <section class="sec-navy pad" id="free-access" data-screen-label="Free sample">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <h2>Not sure yet? Try a free lesson first.</h2>
-      <p>Get one complete lesson from Fan Service Essentials — free. Same delivery, same format, no payment required.</p>
+      <h2>Not sure yet? Try for free!</h2>
+      <p>Try a sample lesson entirely free.<br>Same delivery, same format, no payment required.</p>
     </div>
     <div class="free-steps reveal">
-      <div class="free-step"><div class="free-step__n">1</div><div class="free-step__t">Enter your name and WhatsApp number</div></div>
-      <div class="free-step"><div class="free-step__n">2</div><div class="free-step__t">We send you the free lesson link</div></div>
-      <div class="free-step"><div class="free-step__n">3</div><div class="free-step__t">Your lesson arrives on WhatsApp — instantly</div></div>
+      <div class="free-step"><div class="free-step__n">1</div><div class="free-step__t">Click the button below</div></div>
+      <div class="free-step"><div class="free-step__n">2</div><div class="free-step__t">WhatsApp opens automatically with the pre-filled message "FREE TRIAL"</div></div>
+      <div class="free-step"><div class="free-step__n">3</div><div class="free-step__t">Send the pre-filled message and start learning</div></div>
     </div>
     <div class="free-card reveal">
-      <h3>Free Lesson — Fan Service Essentials</h3>
-      <p>Lesson 1: Reading the Crowd. Delivered to your WhatsApp. No payment. No commitment.</p>
-      <a href="#free-access" class="btn btn--primary">Get Free Access</a>
-      <p class="free-card__fine">We'll send your lesson link by WhatsApp. We don't share your details.</p>
+      <h3>Free Sample Lesson</h3>
+      <p>Get a taste of the full range of what S3Basics offers you.<br>No payment. No commitment.</p>
+      <a href="https://wa.me/PLACEHOLDER?text=FREE%20TRIAL" class="btn btn--whatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Start Free Lesson on WhatsApp
+      </a>
+      <p class="free-card__fine">Tapping the button opens WhatsApp directly.<br>We don't share your details.</p>
     </div>
   </div>
 </section>
@@ -501,17 +620,16 @@
 <section class="sec-off pad" id="instructor" data-screen-label="Instructor bio">
   <div class="wrap bio-grid">
     <div class="reveal bio__photo">
-      <div class="photo-ph">
-        <span class="photo-ph__corner"></span>
-        <span class="photo-ph__corner br"></span>
-        <span class="photo-ph__label">[ Instructor photo —<br>portrait, on-shift ]</span>
-      </div>
+      <img src="Images/photo-thyr-s4-congress.jpg" alt="Thyr Rodrigues presenting at S4 Congress" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius);">
     </div>
     <div class="reveal bio">
       <span class="eyebrow">Your instructor</span>
       <h2>Thyr Rodrigues</h2>
-      <div class="bio__title">Fan Safety, Security and Service Consultant</div>
-      <p class="bio__para">I've spent 11 years working on the world's biggest sporting events — from the FIFA World Cup in Brazil to the Olympic Games in Rio, the Commonwealth Games on the Gold Coast, and UEFA tournaments across Europe. Five continents. More than 40 stadiums. Over a million fans. I built S3Basics because the training that exists doesn't reach the people who need it most — the stewards, security officers, and fan-service workers on the front line.</p>
+      <div class="bio__title">Safety, Security, and Service Expert</div>
+      <p class="bio__para">I've spent 11+ years working on the world's biggest sporting events, from the FIFA World Cup in Brazil to the Olympic Games in Rio, the Commonwealth Games on the Gold Coast, and UEFA tournaments across Europe.</p>
+      <p class="bio__para">Five continents. More than 40 stadiums. Over a million fans.</p>
+      <p class="bio__para">I built S3Basics to put that knowledge in the hands of stewards, security guards, and event hosts.</p>
+      <p class="bio__para">Because in 11 years on the field, I've seen the same thing consistently: the people who master the basics are always the ones who stand out.</p>
       <ul class="bio__creds">
         <li>MSc Crowd Safety Management — Manchester Metropolitan University</li>
         <li>Strategic Board Member — Global Crowd Management Alliance</li>
@@ -523,7 +641,7 @@
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
+<!-- ============ TESTIMONIALS — hidden until real testimonials are available ============
 <section class="sec-sand pad" data-screen-label="Testimonials">
   <div class="wrap">
     <div class="sec-head reveal">
@@ -558,6 +676,7 @@
     </div>
   </div>
 </section>
+============ END TESTIMONIALS ============ -->
 
 <!-- ============ FAQ ============ -->
 <section class="sec-off pad" data-screen-label="FAQ">
@@ -572,23 +691,23 @@
       </div>
       <div class="faq__item">
         <button class="faq__q">What device do I need?<span class="faq__icon"></span></button>
-        <div class="faq__a"><div class="faq__a-inner">Any smartphone with WhatsApp installed. The course is text and image only — no video — so it works on any connection speed, including 2G.</div></div>
+        <div class="faq__a"><div class="faq__a-inner">Any smartphone with WhatsApp installed. The course is built for low latency, suiting any connection speed.</div></div>
       </div>
       <div class="faq__item">
         <button class="faq__q">What language is the course in?<span class="faq__icon"></span></button>
-        <div class="faq__a"><div class="faq__a-inner">Currently English. French, Spanish, and Portuguese versions are in development and will be available soon.</div></div>
+        <div class="faq__a"><div class="faq__a-inner">Currently English, French, Spanish, and Portuguese (PT/BR). Additional language versions are in development and will be available soon.</div></div>
       </div>
       <div class="faq__item">
-        <button class="faq__q">Is there a refund policy?<span class="faq__icon"></span></button>
-        <div class="faq__a"><div class="faq__a-inner">Yes. If the course isn't right for you, contact us and we'll make it right. We stand behind the quality of the content.</div></div>
+        <button class="faq__q">Will I receive a certificate after completing the course?<span class="faq__icon"></span></button>
+        <div class="faq__a"><div class="faq__a-inner">Yes. Once you complete a course, you'll receive a certificate of completion via WhatsApp. You can save and share it directly from your phone.</div></div>
       </div>
       <div class="faq__item">
         <button class="faq__q">Can I do this course if I have no previous training?<span class="faq__icon"></span></button>
-        <div class="faq__a"><div class="faq__a-inner">Yes. The courses are designed for frontline staff at any level — from first shift to experienced operator. No prior qualifications needed.</div></div>
+        <div class="faq__a"><div class="faq__a-inner">Yes. The courses are designed for stewards, security guards, event hosts, and event staff at any level. No prior qualifications needed.</div></div>
       </div>
       <div class="faq__item">
         <button class="faq__q">How long does a course take?<span class="faq__icon"></span></button>
-        <div class="faq__a"><div class="faq__a-inner">Fan Service Essentials takes approximately 60–90 minutes to complete in full, delivered in short daily lessons. You move at your own pace — there's no deadline.</div></div>
+        <div class="faq__a"><div class="faq__a-inner">Each course is self-paced and designed to fit around your schedule. Most learners complete a course in 15 to 45 minutes. Once purchased, your access doesn't expire. Start when you're ready, finish when you can.</div></div>
       </div>
     </div>
   </div>
@@ -598,8 +717,14 @@
 <section class="sec-navy pad" data-screen-label="Footer CTA">
   <div class="wrap footer-cta reveal">
     <h2>Ready to start?</h2>
-    <p>Browse the courses and pick the one that fits your role.</p>
-    <a href="#courses" class="btn btn--primary">Browse Courses</a>
+    <p>Real skills. Fair price. At your pace.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:34px;">
+      <a href="#courses" class="btn btn--primary">Browse Courses</a>
+      <a href="https://wa.me/PLACEHOLDER?text=FREE%20TRIAL" class="btn btn--whatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff" style="flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Try for Free
+      </a>
+    </div>
   </div>
 </section>
 
@@ -607,10 +732,10 @@
 <footer class="footer">
   <div class="wrap">
     <div class="footer__row">
-      <div class="footer__brand">S3Basics</div>
+      <a href="#top" class="footer__brand">S3Basics</a>
       <nav class="footer__links">
         <a href="#courses">Courses</a>
-        <a href="#instructor">About</a>
+        <a href="#instructor">Instructor</a>
         <a href="#privacy">Privacy</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -643,6 +768,31 @@
         item.classList.add('open');
         ans.style.maxHeight = ans.scrollHeight + 'px';
       }
+    });
+  });
+
+  // Carousel arrows
+  var carousel = document.getElementById('coursesCarousel');
+  document.getElementById('carouselNext').addEventListener('click', function() {
+    carousel.scrollBy({ left: 344, behavior: 'smooth' });
+  });
+  document.getElementById('carouselPrev').addEventListener('click', function() {
+    carousel.scrollBy({ left: -344, behavior: 'smooth' });
+  });
+
+  // Course filter tabs
+  document.querySelectorAll('.course-filter').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.course-filter').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('.carousel-card').forEach(function(card) {
+        if (filter === 'all' || card.getAttribute('data-pillars').includes(filter)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
     });
   });
 
