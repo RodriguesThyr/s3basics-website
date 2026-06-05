@@ -112,8 +112,8 @@
   /* ---------- COURSE HERO ---------- */
   .hero { background: var(--navy); color: #fff; padding-top: 68px; }
   .hero__grid {
-    display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(36px, 5vw, 72px); align-items: center;
-    min-height: calc(100vh - 68px); padding-top: clamp(48px, 7vw, 80px); padding-bottom: clamp(48px, 7vw, 80px);
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(36px, 5vw, 72px); align-items: start;
+    padding-top: clamp(48px, 7vw, 80px); padding-bottom: clamp(48px, 7vw, 80px);
   }
   .hero__back {
     display: block;
@@ -286,9 +286,10 @@
         <li>Communicate clearly with your team and supervisors during incidents</li>
       </ul>
       <p class="hero__price-label">One-time payment</p>
-      <p class="hero__price">CHF 8.99</p>
-      <div class="hero__cta">
-        <a href="PLACEHOLDER" class="btn btn--primary btn--full">Start Now</a>
+      <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:4px;">
+        <p class="hero__price" style="margin-top:0;">CHF 8.99</p>
+        <!-- STRIPE: replace href with your Stripe Payment Link URL once created in Stripe dashboard -->
+        <a href="https://buy.stripe.com/REPLACE_WITH_STRIPE_LINK" class="btn btn--primary" style="padding:14px 28px;font-size:.95rem;white-space:nowrap;">Start Now</a>
       </div>
     </div>
     <div class="reveal hero__photo">
@@ -337,8 +338,8 @@
       </div>
       <div class="step reveal">
         <div class="step__num">2</div>
-        <h3>Receive your link</h3>
-        <p>A confirmation email arrives with your personal WhatsApp access link.</p>
+        <h3>Start immediately</h3>
+        <p>You're taken straight to your personal access page. One tap opens WhatsApp and your course begins.</p>
       </div>
       <div class="step reveal">
         <div class="step__num">3</div>
@@ -347,6 +348,9 @@
       </div>
     </div>
     <p class="delivery-note reveal">Affordable. Low data consumption. Convenient.</p>
+    <div class="reveal" style="text-align:center;margin-top:clamp(32px,4vw,48px);">
+      <a href="PLACEHOLDER" class="btn btn--primary">Start Now</a>
+    </div>
   </div>
 </section>
 
@@ -378,7 +382,8 @@
       <p class="price-block__price">CHF 8.99</p>
       <p class="price-block__sub">One-time payment · Instant WhatsApp access</p>
       <div style="margin-top:28px;">
-        <a href="PLACEHOLDER" class="btn btn--primary" style="min-width:280px;">Start Now</a>
+        <!-- STRIPE: same link as hero CTA above -->
+        <a href="https://buy.stripe.com/REPLACE_WITH_STRIPE_LINK" class="btn btn--primary" style="min-width:280px;">Start Now</a>
       </div>
       <a href="homepage.html#courses" class="price-block__back">← Back to all courses</a>
       <p class="price-block__creds">A course by Thyr Rodrigues · MSc Crowd Safety Management · Strategic Board Member, Global Crowd Management Alliance</p>
@@ -395,7 +400,7 @@
     <div class="faq reveal" id="faq">
       <div class="faq__item">
         <button class="faq__q">How does WhatsApp delivery work?<span class="faq__icon"></span></button>
-        <div class="faq__a"><div class="faq__a-inner">Once you complete your purchase, you'll receive a confirmation email with a link. Tap it, and your course begins immediately in WhatsApp — no app download, no account creation, no login. Your lessons arrive as messages, at your pace.</div></div>
+        <div class="faq__a"><div class="faq__a-inner">Once you complete your purchase, you're taken straight to your personal access page. Tap the button, WhatsApp opens, and your course begins immediately — no app download, no account creation, no login. A backup confirmation is also sent to your email.</div></div>
       </div>
       <div class="faq__item">
         <button class="faq__q">What device do I need?<span class="faq__icon"></span></button>
