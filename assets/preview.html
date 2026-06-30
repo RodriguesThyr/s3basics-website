@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>S3Basics — D2 asset set</title>
+<style>
+  body{margin:0;font-family:ui-monospace,Menlo,monospace;background:#EDE8E0;color:#1A1A1A;padding:40px;}
+  h1{font-family:Arial;font-weight:800;color:#0F1F38;font-size:24px;margin:0 0 6px;}
+  p.note{color:#4A5568;font-size:13px;margin:0 0 28px;}
+  .lbl{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6B7688;margin:28px 0 12px;}
+  .row{display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+  .card{background:#F8F6F1;border-radius:10px;padding:22px;display:flex;flex-direction:column;align-items:center;gap:10px;}
+  .card.dark{background:#0F1F38;}
+  .card .cap{font-size:11px;color:#6B7688;}
+  .card.dark .cap{color:rgba(248,246,241,.6);}
+  img{display:block;}
+</style>
+</head>
+<body>
+  <h1>S3Basics — Three Pillars · asset set</h1>
+  <p class="note">Swap threshold: ≥32px three-bar · 16px two-bar. Palette locked: navy #0F1F38 · orange #E8622A · off-white #F8F6F1.</p>
+
+  <div class="lbl">Lockups (SVG)</div>
+  <div class="row">
+    <div class="card"><img src="svg/lockup-light.svg" height="64"><span class="cap">lockup-light</span></div>
+    <div class="card dark"><img src="svg/lockup-dark.svg" height="64"><span class="cap">lockup-dark</span></div>
+  </div>
+  <div class="row" style="margin-top:18px;">
+    <div class="card"><img src="svg/lockup-single-colour-navy.svg" height="64"><span class="cap">single-colour</span></div>
+    <div class="card dark"><img src="svg/lockup-reversed-offwhite.svg" height="64"><span class="cap">reversed</span></div>
+  </div>
+
+  <div class="lbl">Icon marks (SVG)</div>
+  <div class="row">
+    <div class="card"><img src="svg/icon-threebar.svg" width="88"><span class="cap">three-bar</span></div>
+    <div class="card"><img src="svg/icon-twobar-favicon.svg" width="88"><span class="cap">two-bar (favicon)</span></div>
+  </div>
+
+  <div class="lbl">Raster (PNG)</div>
+  <div class="row">
+    <div class="card"><img src="png/icon-512-threebar.png" width="96"><span class="cap">512 · master</span></div>
+    <div class="card"><img src="png/icon-192-threebar.png" width="72"><span class="cap">192 · Android</span></div>
+    <div class="card"><img src="png/icon-180-apple-threebar.png" width="64"><span class="cap">180 · Apple</span></div>
+    <div class="card"><img src="png/favicon-32-threebar.png" width="32"><span class="cap">32 · three-bar</span></div>
+    <div class="card"><img src="png/favicon-16-twobar.png" width="16"><span class="cap">16 · two-bar</span></div>
+  </div>
+
+  <div class="lbl">Circular profile preview + favicon.ico</div>
+  <div class="row">
+    <div class="card"><img src="png/profile-circle-preview-512.png" width="120"><span class="cap">WhatsApp / IG crop</span></div>
+    <div class="card"><img src="favicon.ico" width="32" onerror="this.style.opacity=.3"><span class="cap">favicon.ico (16+32)</span></div>
+  </div>
+</body>
+</html>
